@@ -20,5 +20,6 @@ export default ({dispatch}) => next => action => {
             .then(data => dispatch(showSuccess(data)))
             .catch(error => dispatch(showFailure(error)))
     }
+    
     return next(action)
 };

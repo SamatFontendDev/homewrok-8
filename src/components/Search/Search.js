@@ -26,7 +26,7 @@ class Search extends React.Component{
 
     render() {
         const {shows, isLoading, error} = this.props;
-
+        
         if (isLoading) return <p>Выполняется поиск...</p>
 
         if (error) return <p>Ошибка поиска!</p>

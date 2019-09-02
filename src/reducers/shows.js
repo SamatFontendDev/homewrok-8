@@ -10,9 +10,9 @@ import {
 
 const showInfo = handleActions(
     {
-        [showRequest]: () => [],
+        [showRequest]: () => {},
         [showSuccess]: (_state, action) => action.payload,
-    }, []
+    }, null
 );
 
 const isLoading = handleActions(

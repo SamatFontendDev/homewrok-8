@@ -13,34 +13,35 @@ import css from './ShowPage.module.css';
 class ShowPage extends Component {
   componentDidMount() {
     const { match, showRequest } = this.props;
-    const { id } = match.params;
-
-    showRequest(id);
+    
+    showRequest(match.params.id);
   }
 
   render() {
     console.log(this.props);
     
-    const { show, isLoading, error } = this.props;
-    const { name, image, summary, persons } = showInfo;
+    const { showInfo, isLoading, error } = this.props;
+    if(!showInfo) return null
+    console.log(showInfo)
+    const { name, image, _embedded } = showInfo
+    
+    
 
     if (isLoading) return <p>Данные загружаются...</p>
     if (error) return <p>Произошла сетевая ошибка</p>
 
     return (
       <div>
-        <p>{name}</p>
-        {image && <img src={image} alt={name}/>}
-        <div dangerouslySetInnerHTML={{ __html: summary }} />
-
-        <div className={css.cast}>
-          {persons.map(item => (
-            <div key={item.id} className="t-person">
-              <p>{item.name}</p>
-              {image && <img src={item.image.medium} alt={name}/>}
-            </div>
-          ))}
-        </div>
+       <p>{name}</p>
+       <img src={image.medium} alt={name} />
+       <div className={css.cast}>
+          {_embedded.cast.map(elem => (
+              <div>
+                <p>{elem.person.name}</p>
+                <img src={elem.person.image.medium} alt={elem.person.name} />
+              </div>
+            ))}
+       </div>
       </div>
     );
   }

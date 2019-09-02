@@ -11,7 +11,7 @@ import {combineReducers} from "redux";
 const shows = handleActions(
     {
         [searchRequest]: () => [],
-        [searchSuccess]: (state, action) => action.payload,
+        [searchSuccess]: (_state, action) => action.payload,
     }, []
 );
 
@@ -25,7 +25,7 @@ const isLoading = handleActions(
 
 const error = handleActions(
     {
-        [searchFailure]: (state, action) => action.payload,
+        [searchFailure]: (_state, action) => action.payload,
     }, null
 );
 
